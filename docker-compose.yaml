@@ -1,0 +1,25 @@
+version: "3"
+services:
+  budibase:
+    restart: unless-stopped
+    image: budibase/budibase:latest
+    ports:
+      - 10000:80
+    environment:
+      API_ENCRYPTION_KEY: 9MLenV2RRJ2U0j991sFicnaRKEaLvMdd
+      JWT_SECRET: PWTan7H82Tec5R3aNrusgmOY4gdOB0mS
+      MINIO_ACCESS_KEY: v3w8asUNoRtdvYXRGSXDU639IYNGnMwR
+      MINIO_SECRET_KEY: HP1CrhNGewcO34GZfKlNUnFEnuqydXdp
+      REDIS_PASSWORD: Xf3frzaajD9a0bsVGuJ6CzN46vkU1RBk
+      INTERNAL_API_KEY: gocnY63yjY1AkFw8JC2bbtkLDrPegEvt
+      COUCHDB_USER: admin
+      COUCHDB_PASSWORD: Q2bKWz4NsooJZxpyXWX4bia1ZYq9WsQn
+      PLUGINS_DIR: /plugins
+      BB_ADMIN_USER_EMAIL: admin@admin.com
+      BB_ADMIN_USER_PASSWORD: admin
+    volumes:
+      - budibase_data:/data
+      - /home/arpad/projects/budibase-tiptap:/plugins
+volumes:
+  budibase_data:
+    driver: local

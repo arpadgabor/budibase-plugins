@@ -1,0 +1,10 @@
+{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+
+  "include": ["src", "./index.ts", "lib"],
+  "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
+}

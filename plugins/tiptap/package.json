@@ -1,0 +1,42 @@
+{
+  "name": "budibase-tiptap",
+  "version": "0.0.1",
+  "description": "A TipTap component for Budibase.",
+  "license": "MIT",
+  "svelte": "index.js",
+  "module": "dist/plugin.min.js",
+  "scripts": {
+    "build": "rollup -c --bundleConfigAsCjs",
+    "dev": "rollup -cw --bundleConfigAsCjs"
+  },
+  "dependencies": {
+    "@crownframework/svelte-error-boundary": "^1.0.3",
+    "@tiptap/core": "2.0.0-beta.220",
+    "@tiptap/pm": "2.0.0-beta.220",
+    "@tiptap/starter-kit": "2.0.0-beta.220",
+    "svelte": "^3.57.0"
+  },
+  "devDependencies": {
+    "@budibase/backend-core": "^2.4.35",
+    "@budibase/types": "^2.4.35",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@tsconfig/svelte": "^3.0.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.7",
+    "rollup": "^3.20.2",
+    "rollup-plugin-copy2": "^0.3.1",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-polyfill-node": "^0.12.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-svelte": "^7.1.4",
+    "rollup-plugin-svg": "^2.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "svelte-preprocess": "^5.0.3",
+    "tar": "^6.1.13",
+    "tslib": "^2.5.0",
+    "typescript": "^5.0.2"
+  }
+}

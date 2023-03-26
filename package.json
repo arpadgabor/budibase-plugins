@@ -1,0 +1,13 @@
+{
+  "name": "@arpad/budibase-plugins",
+  "version": "0.0.1",
+  "description": "A monorepo for budibase plugins.",
+  "license": "MIT",
+  "scripts": {
+    "build": "turbo run build --parallel"
+  },
+  "devDependencies": {
+    "prettier": "^2.8.7",
+    "turbo": "^1.8.5"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "component",
+  "metadata": {},
+  "schema": {
+    "name": "budibase-tiptap",
+    "friendlyName": "TipTap",
+    "description": "A TipTap component for Budibase.",
+    "icon": "Text",
+    "settings": [
+      {
+        "type": "field/json",
+        "key": "field",
+        "label": "Field"
+      },
+      {
+        "type": "text",
+        "key": "label",
+        "label": "Label"
+      },
+      {
+        "type": "text",
+        "key": "defaultValue",
+        "label": "Default Value"
+      }
+    ]
+  }
+}
