@@ -1,8 +1,6 @@
 <script lang="ts">
-  import { getContext, onDestroy, onMount } from 'svelte'
-  import { Editor } from '@tiptap/core'
-  import StarterKit from '@tiptap/starter-kit'
-  import {} from '@budibase/bb-ui'
+  import { getContext, onDestroy, type ComponentEvents } from 'svelte'
+  import Editor from './Editor.svelte'
 
   const component = getContext<{ styles: any; subscribe: () => void }>(
     'component'
@@ -13,7 +11,7 @@
 
   export let field
   export let label
-  export let defaultValue
+  // export let defaultValue
 
   const formApi = formContext?.formApi
   $: formStep = formStepContext ? $formStepContext || 1 : 1
@@ -30,62 +28,48 @@
   let fieldState
 
   $: unsubscribe = formField?.subscribe(value => {
-    console.log(fieldState)
     fieldState = value?.fieldState
     fieldApi = value?.fieldApi
-  })
-
-  let element: HTMLDivElement
-  let editor: Editor
-
-  onMount(() => {
     console.log(fieldState)
-    editor = new Editor({
-      element: element,
-      editable: !!formContext,
-      extensions: [StarterKit],
-      content: defaultValue
-        ? JSON.parse(defaultValue)
-        : fieldState?.value || '<p>Type something </p>',
-      onTransaction: () => {
-        // force re-render so `editor.isActive` works as expected
-        editor = editor
-      },
-    })
-
-    editor.on('update', e => fieldApi?.setValue(e.editor.getJSON()))
   })
 
   onDestroy(() => {
     fieldApi?.deregister()
     unsubscribe?.()
-    if (editor) {
-      editor.destroy()
-    }
   })
+
+  // data: JSON object from tiptap
+  function onUpdate(data: ComponentEvents<Editor>['update']) {
+    console.log('Updating', data)
+    fieldApi?.setValue(data.detail)
+  }
+
+  const fieldGroupContext = getContext<any>('field-group')
+  const labelPos = fieldGroupContext?.labelPosition || 'above'
+  $: labelClass = labelPos === 'above' ? '' : `spectrum-FieldLabel--${labelPos}`
 </script>
 
 <div use:sdk.styleable={$component.styles}>
-  {#if editor && editor.isEditable}
-    <button
-      on:click={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-      class:active={editor.isActive('heading', { level: 1 })}
+  <div class="spectrum-Form-item">
+    <label
+      class:hidden={!label}
+      for={fieldState?.fieldId}
+      class={`spectrum-FieldLabel spectrum-FieldLabel--sizeM spectrum-Form-itemLabel ${labelClass}`}
     >
-      H1
-    </button>
-    <button
-      on:click={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-      class:active={editor.isActive('heading', { level: 2 })}
-    >
-      H2
-    </button>
-    <button
-      on:click={() => editor.chain().focus().setParagraph().run()}
-      class:active={editor.isActive('paragraph')}
-    >
-      P
-    </button>
-  {/if}
+      {label || ' '}
+    </label>
+  </div>
 
-  <div bind:this={element} />
+  {#if fieldState}
+    <div
+      class="spectrum-Textfield spectrum-Textfield-input"
+      style="height: auto !important;"
+    >
+      <Editor
+        content={fieldState.value || '<p>Type something </p>'}
+        editable={!!formContext}
+        on:update={onUpdate}
+      />
+    </div>
+  {/if}
 </div>

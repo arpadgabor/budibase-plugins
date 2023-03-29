@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "@crownframework/svelte-error-boundary": "^1.0.3",
-    "@tiptap/core": "2.0.0-beta.220",
-    "@tiptap/pm": "2.0.0-beta.220",
-    "@tiptap/starter-kit": "2.0.0-beta.220",
+    "@tiptap/core": "^2.0.0",
+    "@tiptap/pm": "^2.0.0",
+    "@tiptap/starter-kit": "^2.0.0",
+    "@tiptap/extension-bubble-menu": "^2.0.0",
+    "@tiptap/extension-floating-menu": "^2.0.0",
+    "@tiptap/extension-history": "^2.0.0",
     "svelte": "^3.57.0"
   },
   "devDependencies": {

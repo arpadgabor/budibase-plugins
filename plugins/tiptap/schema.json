@@ -16,11 +16,6 @@
         "type": "text",
         "key": "label",
         "label": "Label"
-      },
-      {
-        "type": "text",
-        "key": "defaultValue",
-        "label": "Default Value"
       }
     ]
   }

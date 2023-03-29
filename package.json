@@ -4,7 +4,8 @@
   "description": "A monorepo for budibase plugins.",
   "license": "MIT",
   "scripts": {
-    "build": "turbo run build --parallel"
+    "build": "turbo run build --parallel",
+    "dev": "turbo run dev --parallel"
   },
   "devDependencies": {
     "prettier": "^2.8.7",
