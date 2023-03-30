@@ -30,7 +30,6 @@
   $: unsubscribe = formField?.subscribe(value => {
     fieldState = value?.fieldState
     fieldApi = value?.fieldApi
-    console.log(fieldState)
   })
 
   onDestroy(() => {
@@ -40,7 +39,6 @@
 
   // data: JSON object from tiptap
   function onUpdate(data: ComponentEvents<Editor>['update']) {
-    console.log('Updating', data)
     fieldApi?.setValue(data.detail)
   }
 
