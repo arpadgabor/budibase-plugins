@@ -12,22 +12,22 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          fetch-depth: 0
+      - name: Install dependencies
+        uses: ./.github/actions/install
 
-      - name: Make the production plugin bundle
+      - name: Build TipTap plugin
         run: |
-          release_version=$(cat package.json | jq -r '.version')
+          release_version=$(cat plugins/tiptap/package.json | jq -r '.version')
           echo "RELEASE_VERSION=$release_version" >> $GITHUB_ENV
-          pnpm
           pnpm build
 
       - name: Perform Github Release
         uses: softprops/action-gh-release@v1
         with:
-          name: v${{ env.RELEASE_VERSION }}
-          tag_name: v${{ env.RELEASE_VERSION }}
+          name: tiptap-v${{ env.RELEASE_VERSION }}
+          tag_name: tiptap-v${{ env.RELEASE_VERSION }}
           generate_release_notes: true
           files: |
-            dist/*.tar.gz
+            plugins/tiptap/dist/*.tar.gz
